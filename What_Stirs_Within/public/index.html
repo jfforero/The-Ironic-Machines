@@ -1,0 +1,176 @@
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8">
+
+
+    <script type="text/javascript" src="../assets/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="../assets/pd-fileutils.js"></script>
+    <script type="text/javascript" src="../../dist/webpd-latest.js"></script>
+    <script type="text/javascript" src="../assets/examples.js"></script>
+
+ 
+
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+   <link href='../assets/examples.css' rel='stylesheet' type='text/css'>
+
+    <title>
+      Project: The Emotional Machine 
+    </title>
+    <link rel="stylesheet" href="style/css/emoji.css">
+  </head>
+  <body>
+
+   <h1>What stirs within <p id = "jorge_slider1"></p></h1>
+  
+   <p id="myParagraph">Sentimiento Resultante.</p>
+   <h3> Audio On:</h3> <p id="jorge_test">0/1</p>
+   <h3> Speech to Text :</h3>  <p id="voz-a-texto">Transcription</p>
+   <h3> Emotional Temperature:</h3> <p id="resultado">Score</p>
+
+ 
+  
+
+    
+
+    <div class="emoji">
+      <!--<img class="idle">-->
+
+ 
+
+      <div id="loading">Wait ...</div>
+      <button id="startButton">Start</button>
+
+
+      <div id="controls">
+
+      <!--<div>
+      <input id="f_portadora" type="range" min="0" max="1000" value="440"/>
+      <input id="box1" type="text" value="0"/> Frecuencia Portadora 
+      </div>-->
+
+      <div>
+      <input id="f_moduladora" type="range" min="0" max="1000" value="0.5"/>
+      <input id="box3" type="text" value="0"  size="4"/> Modulation Frequency
+      </div>
+
+      <div>
+      <input id="i_moduladora" type="range" min="0" max="1000" value="0.5"/>
+      <input id="box4" type="text" value="0" size="4"/> Modulation Index
+      </div>
+
+      <div>
+      <input id="v_general" type="range" min="0" max="100" value="0.5"/>
+      <input id="box2" type="text" value="0" size="4"/>  General Volume
+      </div>
+
+
+     
+      <div id="t_emocion" </div>
+
+
+    </div>
+
+    
+     
+     
+
+      <script>
+
+      var mi_resultado = document.getElementById('resultado');
+      //Pd.send(patch.patchId + '-v_general', [v_p]);
+      //document.write(mi_resultado);
+      //Pd.send(patch.patchId + '-v_general', mi_resultado)
+
+     //var f_portadora = document.getElementById('f_portadora');
+     //  var box1 = document.getElementById("box1");
+     var v_general = document.getElementById('v_general');
+       var box2 = document.getElementById("box2");
+     var f_moduladora = document.getElementById('f_moduladora');
+       var box3 = document.getElementById("box3");
+     var i_moduladora = document.getElementById('i_moduladora');
+       var box4 = document.getElementById("box4");
+
+       var t_emocion = document.getElementById('t_emocion');
+
+       
+
+
+
+        webPdExamples.init()
+
+
+ //         f_portadora.onchange = function(){
+ //         box1.value = f_portadora.value;
+ //         var f_p = parseFloat($('#f_portadora').val())
+ //         Pd.send(patch.patchId + '-f_portadora', [f_p])
+ //       }
+
+ //         box1.onkeyup = function(){
+ //         f_portadora.value = box1.value;
+ //         var c_1 = parseFloat($('#box1').val())
+ //         Pd.send(patch.patchId + '-f_portadora', [c_1])
+ //       }
+
+
+          f_moduladora.onchange = function(){
+                  box3.value = f_moduladora.value;
+          var f_m = parseFloat($('#f_moduladora').val())
+          Pd.send(patch.patchId + '-f_moduladora', [f_m])
+        }
+
+          box3.onkeyup = function(){
+          f_moduladora.value = box3.value;
+          var c_1 = parseFloat($('#box3').val())
+          Pd.send(patch.patchId + '-f_moduladora', [c_1])
+        }
+
+          i_moduladora.onchange = function(){
+          box4.value = i_moduladora.value;
+          var v_m = parseFloat($('#i_moduladora').val())
+          Pd.send(patch.patchId + '-i_moduladora', [v_m])
+        }
+
+          box4.onkeyup = function(){
+          i_moduladora.value = box4.value;
+          var c_1 = parseFloat($('#box4').val())
+          Pd.send(patch.patchId + '-i_moduladora', [c_1])
+        }
+
+
+          v_general.onchange = function(){
+          box2.value = v_general.value;
+          var v_p = parseFloat($('#v_general').val())
+          Pd.send(patch.patchId + '-v_general', [v_p])
+        }
+
+          box2.onkeyup = function(){
+          v_general.value = box2.value;
+          var c_1 = parseFloat($('#box2').val())
+          Pd.send(patch.patchId + '-v_general', [c_1])
+        }
+
+
+
+        t_emocion.onchange = function(){
+        var t_e = parseFloat($('#t_emocion').val())
+        Pd.send(patch.patchId + '-t_emocion', [t_e])
+        }
+
+
+        var patch
+        $.get('pd/main.pd', function(mainStr) {
+            // Loading the patch and abstraction
+            patch = Pd.loadPatch(mainStr)
+            webPdExamples.patchLoaded(mainStr)
+        })
+      </script>
+    </div>
+
+
+
+    <script src="recognition.js"></script>
+
+  </body>
+</html>
