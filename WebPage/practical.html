@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Practical Situation</title>
+    <title>The Practical Situation | Gallery</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <nav class="main-nav">
-        <a href="https://jfforero.github.io/The-Ironic-Machines/">← Back to Menu</a>
-        <span>Gallery / Artistic Iterations</span>
+
+<body class="practical-body">
+
+    <nav class="main-nav" style="background: transparent; border-color: rgba(255,255,255,0.1);">
+        <a href="https://jfforero.github.io/The-Ironic-Machines/" style="color: #888;">← RETURN_TO_MENU</a>
+        <span style="color: var(--accent-art); letter-spacing: 2px; font-size: 0.8rem;">GALLERY // ARTISTIC_ITERATIONS</span>
     </nav>
 
     <div class="container">
@@ -22,21 +25,35 @@
     </div>
 
     <script>
-        const iterations = [
-            "Chromotherapy Chamber", "Frequency Resonance", "Non-Linear Narrative",
-            "Biometric Sculpture", "Echoes of Sarcasm", "Neural Soundscapes",
-            "The Empathic Room", "Subliminal Geometry", "Final Synthesis"
-        ];
-        
-        const grid = document.getElementById('art-grid');
-        iterations.forEach((title, i) => {
-            grid.innerHTML += `
+    const iterations = [
+        { title: "What Stirs Within", desc: "Iteration 01: Web-based affective audio synthesis using AFINN and WebPD.", url: "https://sebpiq.github.io/WebPd_website/" },
+        { title: "A Máquina Sensível", desc: "Iteration 02: Unity3D voice-command system for real-time 3D object transformation.", url: "https://github.com/jfforero/Map2Unity/" },
+        { title: "Abandoned Memories", desc: "Iteration 03: Exploring 'Anemoia' through speech-guided neural style transfer.", url: "https://antologia.litelat.net/volumen2/es/05_Abandoned_Memories.html" },
+        { title: "Veintitantos Vientos", desc: "Iteration 04: Spatial reconfiguration through affective spoken utterances.", url: "https://dl.acm.org/doi/10.1145/3503161.3549973" },
+        { title: "En train d’oublier", desc: "Iteration 05: Dynamic landscapes guided by emotional prosody and memory.", url: "https://michaelmobius.github.io/muestra_jornadas/index.html" },
+        { title: "Terra Australis Ignota", desc: "Iteration 06: Speculative cartography and immersive mapping of architectural spaces.", url: "https://www.caphe.space/xr-festival-florence-2024" },
+        { title: "What Space", desc: "Iteration 07: Investigation of semantic vs. acoustic emotional ambiguity.", url: "https://loop.onland.io/" },
+        { title: "The Ironic Machine[s]", desc: "Iteration 08: Affective environments juxtaposing sarcasm and kindness.", url: "https://aimc2023.pubpub.org/pub/chx6olpn/release/1" },
+        { title: "Bello", desc: "Iteration 09: Final synthesis presented at Igreja da Sé (Algarve Design Meeting).", url: "https://www.belasartes.ulisboa.pt/imersao-video-arte-na-investigacao-academica-noite-europeia-dos-investigadores/" }
+    ];
+
+    const grid = document.getElementById('art-grid');
+    
+    iterations.forEach((item, i) => {
+        // We use template literals to build the new card structure
+        grid.innerHTML += `
+            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="art-link">
                 <div class="art-card">
                     <div class="art-number">0${i+1}</div>
-                    <div class="art-placeholder">ITERATION_IMAGE_${i+1}</div>
-                    <h3>${title}</h3>
-                </div>`;
-        });
+                    <div class="art-placeholder">
+                        <div class="glitch-box"></div>
+                        <span class="view-label">VIEW_ARTIFACT</span>
+                    </div>
+                    <h3 style="font-family: 'Playfair Display', serif;">${item.title}</h3>
+                    <p>${item.desc}</p>
+                </div>
+            </a>`;
+    });
     </script>
 </body>
 </html>

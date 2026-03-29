@@ -127,97 +127,39 @@
         }
     </style>
 </head>
-<body>
-
-    <nav class="main-nav">
-        <a href="https://jfforero.github.io/The-Ironic-Machines/">← RETURN_TO_HOME</a>
-        <span style="font-family: sans-serif; font-size: 0.7rem; color: #444;">CORE_OS // V.2.0.26</span>
+<body class="practical-body">
+    <nav class="main-nav" style="background: transparent; border-color: #222;">
+        <a href="https://jfforero.github.io/The-Ironic-Machines/" style="color: #888;">← Back to Menu</a>
+        <span style="color: var(--accent-art);">Gallery / Artistic Iterations</span>
     </nav>
 
     <div class="container">
         <header class="page-header">
-            <h1>Technical Situation</h1>
-            <p>// Select a module to review the logic and execute.</p>
+            <h1>The Practical Situation</h1>
+            <p>9 Experimental layers of emotional manifestation.</p>
         </header>
 
-        <div id="accordion-root"></div>
+        <section class="art-grid" id="art-grid"></section>
     </div>
 
     <script>
-        const projects = [
-            { 
-                title: "Sentiment Analysis", 
-                desc: "Real-time polarity detection to modulate scene lighting and mood.",
-                code: `<span class="code-comment"># Affective NLP Initialization</span><br><span class="code-keyword">from</span> transformers <span class="code-keyword">import</span> pipeline<br>analyzer = pipeline(<span class="code-string">"sentiment-analysis"</span>)<br>result = analyzer(user_text_input)<br><span class="code-func">system_log</span>(f<span class="code-string">"Mood: {result[0]['label']}"</span>)`,
-                url: "https://colab.research.google.com/github/jfforero/The-Ironic-Machines/blob/main/Sentiment-Analysis.ipynb" 
-            },
-            { 
-                title: "Speech Emotion Recognition", 
-                desc: "Paralinguistic extraction from vocal pitch and spectral energy.",
-                code: `<span class="code-comment"># Audio Feature Extraction (MFCC)</span><br><span class="code-keyword">import</span> librosa<br>signal, rate = librosa.load(audio_stream)<br>features = librosa.feature.mfcc(y=signal, sr=rate)<br><span class="code-func">trigger_affective_response</span>(features.mean(axis=1))`,
-                url: "https://colab.research.google.com/github/jfforero/The-Ironic-Machines/blob/main/Speech-Emotion-Recognition.ipynb" 
-            },
-            { 
-                title: "Irony Analysis", 
-                desc: "Identifying semantic divergence in sarcastic human interaction.",
-                code: `<span class="code-comment"># Contrast Detection Pipeline</span><br><span class="code-keyword">import</span> irony_engine<br>model = irony_engine.load_weights(<span class="code-string">'v3_sarcasm'</span>)<br>is_ironic = model.predict(input_context)<br><span class="code-keyword">if</span> is_ironic: <span class="code-func">modulate_narrative_irony</span>()`,
-                url: "https://colab.research.google.com/github/jfforero/The-Ironic-Machines/blob/main/Prosodic-Irony-Analysis.ipynb" 
-            },
-            { 
-                title: "Affective Music Generation", 
-                desc: "Dynamic composition conditioned on Valence-Arousal coordinates.",
-                code: `<span class="code-comment"># MIDI Generative Mapping</span><br><span class="code-keyword">def</span> <span class="code-func">map_emotion_to_midi</span>(v, a):<br>&nbsp;&nbsp;&nbsp;&nbsp;scale = <span class="code-string">'Minor'</span> <span class="code-keyword">if</span> v < 0.5 <span class="code-keyword">else</span> <span class="code-string">'Major'</span><br>&nbsp;&nbsp;&nbsp;&nbsp;tempo = <span class="code-func">scale_range</span>(a, min=40, max=160)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> GenEngine.play(scale, tempo)`,
-                url: "https://colab.research.google.com/github/jfforero/The-Ironic-Machines/blob/main/Affective-Music-Generation.ipynb" 
-            },
-            { 
-                title: "Affective Virtual Environments", 
-                desc: "Environmental transformation engine based on multisensory affect data.",
-                code: `<span class="code-comment"># Unity/Unreal Engine Bridge</span><br><span class="code-keyword">class</span> <span class="code-func">EnvironmentEngine</span>:<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-func">update</span>(self, user_affect):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.walls.<span class="code-func">shift_color</span>(user_affect.valence)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.geometry.<span class="code-func">distort</span>(user_affect.arousal)`,
-                url: "https://colab.research.google.com/github/jfforero/The-Ironic-Machines/blob/main/Affective-Environments-Generation.ipynb" 
-            }
-        ];
+        // ... (Keep your existing iterations array) ...
 
-        const root = document.getElementById('accordion-root');
-
-        projects.forEach((p, index) => {
-            const item = document.createElement('div');
-            item.className = 'accordion-item' + (index === 0 ? ' active' : '');
-            item.innerHTML = `
-                <button class="accordion-header" onclick="toggleAccordion(${index})">
-                    <div class="header-left">
-                        <div class="status-dot"></div>
-                        <h3>0${index+1} / ${p.title}</h3>
+        const grid = document.getElementById('art-grid');
+        iterations.forEach((item, i) => {
+            grid.innerHTML += `
+                <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="art-link">
+                    <div class="art-card">
+                        <div class="art-number">0${i+1}</div>
+                        <div class="art-placeholder">
+                            <div class="glitch-box"></div>
+                            <span class="view-label">ENTER_EXPERIENCE</span>
+                        </div>
+                        <h3>${item.title}</h3>
+                        <p>${item.desc}</p>
                     </div>
-                    <span class="toggle-icon">+</span>
-                </button>
-                <div class="accordion-content">
-                    <div class="code-window">
-                        <code>${p.code}</code>
-                    </div>
-                    <div class="action-bar">
-                        <span class="desc-text">${p.desc}</span>
-                        <a href="${p.url}" target="_blank" class="colab-btn">
-                            <img src="https://colab.research.google.com/assets/colab-badge.svg" height="18">
-                            RUN_MODULE
-                        </a>
-                    </div>
-                </div>
-            `;
-            root.appendChild(item);
+                </a>`;
         });
-
-        function toggleAccordion(index) {
-            const items = document.querySelectorAll('.accordion-item');
-            const clickedItem = items[index];
-            const isAlreadyActive = clickedItem.classList.contains('active');
-
-            // Optional: Close others when opening one
-            items.forEach(item => item.classList.remove('active'));
-
-            if (!isAlreadyActive) {
-                clickedItem.classList.add('active');
-            }
-        }
     </script>
 </body>
 </html>
