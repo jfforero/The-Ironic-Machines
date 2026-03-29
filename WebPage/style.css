@@ -1,0 +1,40 @@
+:root {
+    --dark: #0f0f0f;
+    --light: #fdfdfd;
+    --accent-tech: #4285f4;
+    --accent-art: #ff3e00;
+}
+
+body { margin: 0; font-family: 'Segoe UI', Roboto, sans-serif; background: var(--light); color: var(--dark); }
+
+/* --- HOME PAGE --- */
+.split-screen { display: flex; height: 100vh; }
+.pane { 
+    flex: 1; position: relative; text-decoration: none; 
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.6s ease;
+}
+.technical { background: var(--dark); color: var(--accent-tech); }
+.practical { background: #e0e0e0; color: var(--accent-art); }
+.pane:hover { flex: 1.4; filter: brightness(1.2); }
+
+.overlay { text-align: center; padding: 20px; }
+.overlay h2 { font-size: 3rem; margin: 0; text-transform: uppercase; }
+.btn-discover { display: inline-block; margin-top: 20px; padding: 10px 20px; border: 1px solid currentColor; border-radius: 50px; }
+
+/* --- LAYOUT --- */
+.container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+.main-nav { padding: 20px; background: #fff; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; font-weight: bold; }
+.main-nav a { text-decoration: none; color: var(--dark); }
+.page-header { text-align: center; margin-bottom: 50px; }
+
+/* --- GRIDS --- */
+.grid, .art-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+
+/* --- CARDS --- */
+.card, .art-card { background: white; border: 1px solid #eee; padding: 25px; border-radius: 8px; transition: 0.3s; }
+.card:hover { border-color: var(--accent-tech); transform: translateY(-5px); }
+.art-card:hover { border-color: var(--accent-art); }
+
+.art-placeholder { height: 200px; background: #111; display: flex; align-items: center; justify-content: center; color: #333; font-weight: bold; margin: 15px 0; }
+.art-number { color: var(--accent-art); font-family: monospace; }

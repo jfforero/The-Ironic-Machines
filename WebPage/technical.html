@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Technical Situation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <a href="index.html">← Back to Menu</a>
+        <span>Laboratory / Affective Computing</span>
+    </nav>
+
+    <div class="container">
+        <header class="page-header">
+            <h1>The Technical Situation</h1>
+            <p>Computational frameworks for emotional intelligence.</p>
+        </header>
+
+        <main id="technical-grid" class="grid"></main>
+    </div>
+
+    <script>
+        const projects = [
+            { title: "Sentiment Analysis", desc: "Detecting emotional polarity via NLP to adapt scene mood and narrative.", url: "#" },
+            { title: "Speech Emotion Recognition", desc: "Extracting pitch and spectral cues to infer affective states from voice.", url: "" },
+            { title: "Irony Analysis", desc: "Combining contextual embeddings to identify sarcasm and maintain coherence.", url: "#" },
+            { title: "Affective Music Generation", desc: "Generative models conditioned on valence/arousal for real-time scores.", url: "#" },
+            { title: "Affective Virtual Environments", desc: "The convergence of all modules into an emotionally responsive digital space.", url: "#" }
+        ];
+
+        const grid = document.getElementById('technical-grid');
+        projects.forEach(p => {
+            grid.innerHTML += `
+                <div class="card">
+                    <div class="card-content">
+                        <h3>${p.title}</h3>
+                        <p>${p.desc}</p>
+                        <div class="footer-card">
+                            <a href="${p.url}" target="_blank">
+                                <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab">
+                            </a>
+                        </div>
+                    </div>
+                </div>`;
+        });
+    </script>
+</body>
+</html>
