@@ -3,69 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Technical Situation</title>
+    <title>The Technical Situation | System Modules</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --accent-tech: #4285f4;
+            --code-bg: #1e1e1e;
+            --panel-bg: #121212;
+            --border-color: #2a2a2a;
+        }
+
+        body { background: #050505; color: #ccc; margin: 0; font-family: 'Courier New', Courier, monospace; }
+
+        .main-nav { 
+            padding: 15px 30px; 
+            background: #000; 
+            border-bottom: 1px solid var(--border-color); 
+            display: flex; 
+            justify-content: space-between;
+            font-family: sans-serif;
+        }
+        .main-nav a { color: #888; text-decoration: none; font-size: 0.85rem; letter-spacing: 1px; }
+
+        .container { max-width: 900px; margin: 60px auto; padding: 0 20px; }
+
+        .page-header { margin-bottom: 40px; border-left: 2px solid var(--accent-tech); padding-left: 20px; }
+        .page-header h1 { font-size: 2.2rem; color: #fff; margin: 0; font-family: sans-serif; text-transform: uppercase; letter-spacing: 2px; }
+        .page-header p { color: #555; font-family: sans-serif; margin-top: 5px; }
+
+        /* --- ACCORDION SYSTEM --- */
+        .accordion-item {
+            border: 1px solid var(--border-color);
+            margin-bottom: 10px;
+            border-radius: 4px;
+            overflow: hidden;
+            background: var(--panel-bg);
+        }
+
+        .accordion-header {
+            width: 100%;
+            padding: 18px 25px;
+            background: #1a1a1a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: background 0.2s;
+        }
+
+        .accordion-header:hover { background: #222; }
+
+        .header-left { display: flex; align-items: center; gap: 15px; }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #444; }
+        .active .status-dot { background: var(--accent-tech); box-shadow: 0 0 8px var(--accent-tech); }
+
+        .header-left h3 { 
+            margin: 0; 
+            color: #eee; 
+            font-family: sans-serif; 
+            font-size: 1.1rem; 
+            font-weight: 400;
+        }
+
+        .toggle-icon { color: #555; font-size: 1.2rem; transition: transform 0.3s; }
+        .active .toggle-icon { transform: rotate(45deg); color: var(--accent-tech); }
+
+        /* --- CONTENT AREA --- */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--code-bg);
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 600px; /* High enough to fit code + bar */
+        }
+
+        .code-window {
+            padding: 25px;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #d4d4d4;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Syntax Highlighting */
+        .code-keyword { color: #569cd6; }
+        .code-func { color: #dcdcaa; }
+        .code-string { color: #ce9178; }
+        .code-comment { color: #6a9955; }
+
+        .action-bar {
+            padding: 15px 25px;
+            background: #111;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .desc-text { font-family: sans-serif; font-size: 0.8rem; color: #777; max-width: 60%; }
+
+        .colab-btn {
+            background: transparent;
+            color: #fff;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-family: sans-serif;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #444;
+            transition: 0.3s;
+        }
+
+        .colab-btn:hover {
+            border-color: var(--accent-tech);
+            background: rgba(66, 133, 244, 0.1);
+        }
+    </style>
 </head>
 <body>
+
     <nav class="main-nav">
-        <a href="https://jfforero.github.io/The-Ironic-Machines/">← Back to Menu</a>
-        <span>Laboratory / Affective Computing</span>
+        <a href="https://jfforero.github.io/The-Ironic-Machines/">← RETURN_TO_HOME</a>
+        <span style="font-family: sans-serif; font-size: 0.7rem; color: #444;">CORE_OS // V.2.0.26</span>
     </nav>
 
     <div class="container">
         <header class="page-header">
-            <h1>The Technical Situation</h1>
-            <p>Computational frameworks for emotional intelligence.</p>
+            <h1>Technical Situation</h1>
+            <p>// Select a module to review the logic and execute.</p>
         </header>
 
-        <main id="technical-grid" class="grid"></main>
+        <div id="accordion-root"></div>
     </div>
 
     <script>
-    const projects = [
-        { 
-            title: "Sentiment Analysis", 
-            desc: "Detecting emotional polarity via NLP to adapt scene mood and narrative.", 
-            // We change the domain to colab.research.google.com/github/ to trigger the direct Colab open
-            url: "https://colab.research.google.com/github/jfforero/The-Ironic-Machines/blob/main/Sentiment-Analysis.ipynb" 
-        },
-        { 
-            title: "Speech Emotion Recognition", 
-            desc: "Extracting pitch and spectral cues to infer affective states from voice.", 
-            url: "https://colab.research.google.com/github/jfforero/The-Ironic-Machines/blob/main/Speech-Emotion-Recognition.ipynb" 
-        },
-        { 
-            title: "Irony Analysis", 
-            desc: "Combining contextual embeddings to identify sarcasm and maintain coherence.", 
-            url: "https://colab.research.google.com/github/jfforero/The-Ironic-Machines/blob/main/Prosodic-Irony-Analysis.ipynb" 
-        },
-        { 
-            title: "Affective Music Generation", 
-            desc: "Generative models conditioned on valence/arousal for real-time scores.", 
-            url: "https://colab.research.google.com/github/jfforero/The-Ironic-Machines/blob/main/Affective-Music-Generation.ipynb" 
-        },
-        { 
-            title: "Affective Virtual Environments", 
-            desc: "The convergence of all modules into an emotionally responsive digital space.", 
-            url: "https://colab.research.google.com/github/jfforero/The-Ironic-Machines/blob/main/Affective-Environments-Generation.ipynb" 
-        }
-    ];
+        const projects = [
+            { 
+                title: "Sentiment Analysis", 
+                desc: "Real-time polarity detection to modulate scene lighting and mood.",
+                code: `<span class="code-comment"># Affective NLP Initialization</span><br><span class="code-keyword">from</span> transformers <span class="code-keyword">import</span> pipeline<br>analyzer = pipeline(<span class="code-string">"sentiment-analysis"</span>)<br>result = analyzer(user_text_input)<br><span class="code-func">system_log</span>(f<span class="code-string">"Mood: {result[0]['label']}"</span>)`,
+                url: "https://colab.research.google.com/github/jfforero/The-Ironic-Machines/blob/main/Sentiment-Analysis.ipynb" 
+            },
+            { 
+                title: "Speech Emotion Recognition", 
+                desc: "Paralinguistic extraction from vocal pitch and spectral energy.",
+                code: `<span class="code-comment"># Audio Feature Extraction (MFCC)</span><br><span class="code-keyword">import</span> librosa<br>signal, rate = librosa.load(audio_stream)<br>features = librosa.feature.mfcc(y=signal, sr=rate)<br><span class="code-func">trigger_affective_response</span>(features.mean(axis=1))`,
+                url: "https://colab.research.google.com/github/jfforero/The-Ironic-Machines/blob/main/Speech-Emotion-Recognition.ipynb" 
+            },
+            { 
+                title: "Irony Analysis", 
+                desc: "Identifying semantic divergence in sarcastic human interaction.",
+                code: `<span class="code-comment"># Contrast Detection Pipeline</span><br><span class="code-keyword">import</span> irony_engine<br>model = irony_engine.load_weights(<span class="code-string">'v3_sarcasm'</span>)<br>is_ironic = model.predict(input_context)<br><span class="code-keyword">if</span> is_ironic: <span class="code-func">modulate_narrative_irony</span>()`,
+                url: "https://colab.research.google.com/github/jfforero/The-Ironic-Machines/blob/main/Prosodic-Irony-Analysis.ipynb" 
+            },
+            { 
+                title: "Affective Music Generation", 
+                desc: "Dynamic composition conditioned on Valence-Arousal coordinates.",
+                code: `<span class="code-comment"># MIDI Generative Mapping</span><br><span class="code-keyword">def</span> <span class="code-func">map_emotion_to_midi</span>(v, a):<br>&nbsp;&nbsp;&nbsp;&nbsp;scale = <span class="code-string">'Minor'</span> <span class="code-keyword">if</span> v < 0.5 <span class="code-keyword">else</span> <span class="code-string">'Major'</span><br>&nbsp;&nbsp;&nbsp;&nbsp;tempo = <span class="code-func">scale_range</span>(a, min=40, max=160)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> GenEngine.play(scale, tempo)`,
+                url: "https://colab.research.google.com/github/jfforero/The-Ironic-Machines/blob/main/Affective-Music-Generation.ipynb" 
+            },
+            { 
+                title: "Affective Virtual Environments", 
+                desc: "Environmental transformation engine based on multisensory affect data.",
+                code: `<span class="code-comment"># Unity/Unreal Engine Bridge</span><br><span class="code-keyword">class</span> <span class="code-func">EnvironmentEngine</span>:<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-func">update</span>(self, user_affect):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.walls.<span class="code-func">shift_color</span>(user_affect.valence)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.geometry.<span class="code-func">distort</span>(user_affect.arousal)`,
+                url: "https://colab.research.google.com/github/jfforero/The-Ironic-Machines/blob/main/Affective-Environments-Generation.ipynb" 
+            }
+        ];
 
-    const grid = document.getElementById('technical-grid');
-    projects.forEach(p => {
-        grid.innerHTML += `
-            <div class="card">
-                <div class="card-content">
-                    <h3>${p.title}</h3>
-                    <p>${p.desc}</p>
-                    <div class="footer-card">
-                        <a href="${p.url}" target="_blank" rel="noopener noreferrer">
-                            <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab">
+        const root = document.getElementById('accordion-root');
+
+        projects.forEach((p, index) => {
+            const item = document.createElement('div');
+            item.className = 'accordion-item' + (index === 0 ? ' active' : '');
+            item.innerHTML = `
+                <button class="accordion-header" onclick="toggleAccordion(${index})">
+                    <div class="header-left">
+                        <div class="status-dot"></div>
+                        <h3>0${index+1} / ${p.title}</h3>
+                    </div>
+                    <span class="toggle-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="code-window">
+                        <code>${p.code}</code>
+                    </div>
+                    <div class="action-bar">
+                        <span class="desc-text">${p.desc}</span>
+                        <a href="${p.url}" target="_blank" class="colab-btn">
+                            <img src="https://colab.research.google.com/assets/colab-badge.svg" height="18">
+                            RUN_MODULE
                         </a>
                     </div>
                 </div>
-            </div>`;
-    });
-</script>
+            `;
+            root.appendChild(item);
+        });
+
+        function toggleAccordion(index) {
+            const items = document.querySelectorAll('.accordion-item');
+            const clickedItem = items[index];
+            const isAlreadyActive = clickedItem.classList.contains('active');
+
+            // Optional: Close others when opening one
+            items.forEach(item => item.classList.remove('active'));
+
+            if (!isAlreadyActive) {
+                clickedItem.classList.add('active');
+            }
+        }
+    </script>
 </body>
 </html>
