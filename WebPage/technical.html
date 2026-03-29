@@ -22,29 +22,50 @@
     </div>
 
     <script>
-        const projects = [
-            { title: "Sentiment Analysis", desc: "Detecting emotional polarity via NLP to adapt scene mood and narrative.", url: "https://github.com/jfforero/The-Ironic-Machines/blob/main/Sentiment-Analysis.ipynb" },
-            { title: "Speech Emotion Recognition", desc: "Extracting pitch and spectral cues to infer affective states from voice.", url: "" },
-            { title: "Irony Analysis", desc: "Combining contextual embeddings to identify sarcasm and maintain coherence.", url: "#" },
-            { title: "Affective Music Generation", desc: "Generative models conditioned on valence/arousal for real-time scores.", url: "#" },
-            { title: "Affective Virtual Environments", desc: "The convergence of all modules into an emotionally responsive digital space.", url: "#" }
-        ];
+    const projects = [
+        { 
+            title: "Sentiment Analysis", 
+            desc: "Detecting emotional polarity via NLP to adapt scene mood and narrative.", 
+            // We change the domain to colab.research.google.com/github/ to trigger the direct Colab open
+            url: "https://colab.research.google.com/github/jfforero/The-Ironic-Machines/blob/main/Sentiment-Analysis.ipynb" 
+        },
+        { 
+            title: "Speech Emotion Recognition", 
+            desc: "Extracting pitch and spectral cues to infer affective states from voice.", 
+            url: "https://colab.research.google.com/github/jfforero/The-Ironic-Machines/blob/main/Speech-Emotion-Recognition.ipynb" 
+        },
+        { 
+            title: "Irony Analysis", 
+            desc: "Combining contextual embeddings to identify sarcasm and maintain coherence.", 
+            url: "https://colab.research.google.com/github/jfforero/The-Ironic-Machines/blob/main/Prosodic-Irony-Analysis.ipynb" 
+        },
+        { 
+            title: "Affective Music Generation", 
+            desc: "Generative models conditioned on valence/arousal for real-time scores.", 
+            url: "https://colab.research.google.com/github/jfforero/The-Ironic-Machines/blob/main/Affective-Music-Generation.ipynb" 
+        },
+        { 
+            title: "Affective Virtual Environments", 
+            desc: "The convergence of all modules into an emotionally responsive digital space.", 
+            url: "https://colab.research.google.com/github/jfforero/The-Ironic-Machines/blob/main/Affective-Environments-Generation.ipynb" 
+        }
+    ];
 
-        const grid = document.getElementById('technical-grid');
-        projects.forEach(p => {
-            grid.innerHTML += `
-                <div class="card">
-                    <div class="card-content">
-                        <h3>${p.title}</h3>
-                        <p>${p.desc}</p>
-                        <div class="footer-card">
-                            <a href="${p.url}" target="_blank">
-                                <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab">
-                            </a>
-                        </div>
+    const grid = document.getElementById('technical-grid');
+    projects.forEach(p => {
+        grid.innerHTML += `
+            <div class="card">
+                <div class="card-content">
+                    <h3>${p.title}</h3>
+                    <p>${p.desc}</p>
+                    <div class="footer-card">
+                        <a href="${p.url}" target="_blank" rel="noopener noreferrer">
+                            <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab">
+                        </a>
                     </div>
-                </div>`;
-        });
-    </script>
+                </div>
+            </div>`;
+    });
+</script>
 </body>
 </html>
