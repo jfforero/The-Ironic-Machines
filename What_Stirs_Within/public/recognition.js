@@ -57,7 +57,15 @@ function HUADCUMN() {
   //recuperar.start();
 
   document.body.onclick = function() {
-     recuperar.start();
+     // Avoid "recognition has already started" when user clicks repeatedly.
+     try {
+       recuperar.stop()
+     } catch (e) {}
+     try {
+       recuperar.start()
+     } catch (e) {
+       console.error('Recognition start error -> ', e)
+     }
     // randomPhrase();
     console.log('Tamos Ready Freddy.');
   }
@@ -89,7 +97,7 @@ detSent('searching')
 
 
 var llamada = "http://localhost:3000"
-  fetch(`${llamada}/emotion?text=${onto}`)
+  fetch(`${llamada}/emotion?text=${encodeURIComponent(onto)}`)
     .then((response) => response.json())
     .then((result) => {
       if (result.score > 0) {
