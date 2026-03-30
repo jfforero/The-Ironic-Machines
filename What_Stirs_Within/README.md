@@ -1,7 +1,6 @@
-# Speech to Emotion
+# What_Stirs_Within
 
-Convert live microphone speech into sentiment and drive the audiovisual behavior of the app.
-
+Multimedia project that uses Automatic Speech Recognition (ASR) and sentimental analysis to control Musical cues.
 ## Project structure
 
 - `server.js`: Express API (`/emotion`) and static app server.
