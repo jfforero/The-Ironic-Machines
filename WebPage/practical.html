@@ -6,6 +6,41 @@
     <title>The Practical Situation | Gallery</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+<style>
+    /* Fix for the "Half Canvas" / Layout issue */
+    .art-placeholder {
+        position: relative;
+        width: 100%;
+        height: 250px; /* Adjust based on your design */
+        background: #111;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .art-placeholder img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures the image fills the area without distorting */
+        opacity: 0.8;
+        transition: transform 0.5s ease, opacity 0.3s ease;
+    }
+
+    .art-card:hover .art-placeholder img {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    /* Styling for the View Label overlay */
+    .view-label {
+        position: absolute;
+        z-index: 2;
+        background: rgba(0,0,0,0.7);
+        padding: 5px 10px;
+        font-size: 0.7rem;
+    }
+</style>
 </head>
 
 <body class="practical-body">
@@ -25,35 +60,38 @@
     </div>
 
     <script>
-    const iterations = [
-        { title: "What Stirs Within", desc: "Iteration 01: Web-based affective audio synthesis using AFINN and WebPD.", url: "https://sebpiq.github.io/WebPd_website/" },
-        { title: "A Máquina Sensível", desc: "Iteration 02: Unity3D voice-command system for real-time 3D object transformation.", url: "https://github.com/jfforero/Map2Unity/" },
-        { title: "Abandoned Memories", desc: "Iteration 03: Exploring 'Anemoia' through speech-guided neural style transfer.", url: "https://antologia.litelat.net/volumen2/es/05_Abandoned_Memories.html" },
-        { title: "Veintitantos Vientos", desc: "Iteration 04: Spatial reconfiguration through affective spoken utterances.", url: "https://dl.acm.org/doi/10.1145/3503161.3549973" },
-        { title: "En train d’oublier", desc: "Iteration 05: Dynamic landscapes guided by emotional prosody and memory.", url: "https://michaelmobius.github.io/muestra_jornadas/index.html" },
-        { title: "Terra Australis Ignota", desc: "Iteration 06: Speculative cartography and immersive mapping of architectural spaces.", url: "https://www.caphe.space/xr-festival-florence-2024" },
-        { title: "What Space", desc: "Iteration 07: Investigation of semantic vs. acoustic emotional ambiguity.", url: "https://loop.onland.io/" },
-        { title: "The Ironic Machine[s]", desc: "Iteration 08: Affective environments juxtaposing sarcasm and kindness.", url: "https://aimc2023.pubpub.org/pub/chx6olpn/release/1" },
-        { title: "Bello", desc: "Iteration 09: Final synthesis presented at Igreja da Sé (Algarve Design Meeting).", url: "https://www.belasartes.ulisboa.pt/imersao-video-arte-na-investigacao-academica-noite-europeia-dos-investigadores/" }
-    ];
+/** * NOTE: If your HTML file is inside the "WebPage" folder alongside the images, 
+ * use "01.png". If the HTML is one folder up, use "WebPage/01.png".
+ */
+const iterations = [
+    { title: "What Stirs Within", desc: "Iteration 01: Web-based affective audio synthesis.", url: "https://github.com/jfforero/The-Ironic-Machines/tree/main/What_Stirs_Within", thumb: "WebImages/01.png" },
+    { title: "A Máquina Sensível", desc: "Iteration 02: Unity3D voice-command system.", url: "https://jfforero.itch.io/ams", thumb: "WebImages/02.png" },
+    { title: "Abandoned Memories", desc: "Iteration 03: Speech-guided neural style transfer.", url: "https://emotional-machines.com/poetry/abandoned-memories/", thumb: "WebImages/03.png" },
+    { title: "Veintitantos Vientos", desc: "Iteration 04: Spatial reconfiguration via utterances.", url: "https://www.forero.cl/poetry/veintitantos-vientos/index.html", thumb: "WebImages/04.png" },
+    { title: "En train d’oublier", desc: "Iteration 05: Dynamic landscapes and memory.", url: "https://territoriosvirtuales.wordpress.com/1889/10/30/_en-train-doublier_/", thumb: "WebImages/05.png" },
+    { title: "Terra Australis Ignota", desc: "Iteration 06: Speculative cartography.", url: "https://territoriosvirtuales.wordpress.com/1570/05/20/terra-australis-ignota/", thumb: "WebImages/06.png" },
+    { title: "What Space", desc: "Iteration 07: Semantic vs. acoustic ambiguity.", url: "https://territoriosvirtuales.wordpress.com/2024/09/18/the-what-space/", thumb: "WebImages/07.png" },
+    { title: "The Ironic Machine[s]", desc: "Iteration 08: Sarcasm and kindness environments.", url: "https://jfforero.github.io/TheIronicMachine/index.html", thumb: "WebImages/08.png" },
+    { title: "Bello", desc: "Iteration 09: Final synthesis at Igreja da Sé.", url: "https://emotional-machines.com/poetry/bello/", thumb: "WebImages/09.png" }
+];
 
-    const grid = document.getElementById('art-grid');
-    
-    iterations.forEach((item, i) => {
-        // We use template literals to build the new card structure
-        grid.innerHTML += `
-            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="art-link">
-                <div class="art-card">
-                    <div class="art-number">0${i+1}</div>
-                    <div class="art-placeholder">
-                        <div class="glitch-box"></div>
-                        <span class="view-label">VIEW_ARTIFACT</span>
-                    </div>
-                    <h3 style="font-family: 'Playfair Display', serif;">${item.title}</h3>
-                    <p>${item.desc}</p>
+const grid = document.getElementById('art-grid');
+
+iterations.forEach((item, i) => {
+    grid.innerHTML += `
+        <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="art-link">
+            <div class="art-card">
+                <div class="art-number">0${i+1}</div>
+                <div class="art-placeholder">
+                    <img src="${item.thumb}" alt="${item.title}" onerror="this.src='https://picsum.photos/seed/error/600/400'">
+                    <div class="glitch-box"></div>
+                    <span class="view-label">VIEW_ARTIFACT</span>
                 </div>
-            </a>`;
-    });
-    </script>
+                <h3 style="font-family: 'Playfair Display', serif; margin-top: 15px;">${item.title}</h3>
+                <p>${item.desc}</p>
+            </div>
+        </a>`;
+});
+</script>
 </body>
 </html>
