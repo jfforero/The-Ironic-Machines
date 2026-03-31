@@ -26,7 +26,7 @@ This section serves as the analytical backbone and contains the **Google Colab n
 * **Chap 4: Section 2:** Acoustic Speech Emotion Recognition (MLP, CNN, and CNN+LSTM models using eGeMAPS/MFCC).
 * **Chap 5: Section 1:** Assessing Irony (Statistical inference and perceptual evaluation frameworks).
 * **Chap 6: Section 1:** Affective Music Generation (Mapping emotional valence/arousal to musical features).
-* **Chap 7: Section 2:** Affective Virtual Environment Generation (Three-level prompt engineering framework).
+* **Chap 6: Section 2:** Affective Virtual Environment Generation (Mapping emotional valence/arousal to visual features).
 * **EXTRA:** Lightweight LSTM trained with 40 Mel-Frequency Cepstral Coefficients (MFCC) for real-time Hugging Face/web deployment.
 
 ### 🎭 Practical Situation
