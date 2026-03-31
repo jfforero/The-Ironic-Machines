@@ -1,0 +1,4 @@
+exclude:
+  - node_modules
+  - What_Stirs_Within/node_modules
+  - vendor
